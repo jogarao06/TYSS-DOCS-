@@ -1,0 +1,210 @@
+Regular Expression(JAVA 1.4)(RegEx)
+===================================
+Regular Expression is an expression which is coming regularly inside a target String
+
+or
+
+It is a collection of String Object in specific format or pattern.
+
+It is present inside java.util package
+
+abaabbababa ----> Target String
+aba ---> RE/Pattern
+
+Ex=1
+package RegularExpression;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Program_1_RegExDemo {
+	
+	public static void main(String[]args)
+	{
+		/*
+		 * If a static method returning the object of
+		 * it's class then it is called as Static Factory Method
+		 */
+		//Pattern class will convert the RE into Java object
+		Pattern p = Pattern.compile("aba");
+		
+		//matcher() taking the target string as argument and converting
+		//it to Matcher class object
+		Matcher m = p.matcher("abaabaabaaba");
+		
+		while(m.find())
+		{
+			System.out.println(m.start()+" "+m.end()+" "+m.group());
+		}
+	}
+
+}
+
+boolean find() --> It will check the next pattern inside Target string, if it present it will true else it
+                   will return false
+int start() --> It will return me the start index of the pattern inside target string
+int end() --> It will return me the end index+1 of the pattern inside target string
+String group --> It will return me the Regular expression/pattern
+
+Charachter Classes
+==================
+[a-z] --> all the lower case alphabet
+[A-Z] --> all the upper case alphabet
+[0-9] --> all the digit
+[a-zA-Z] --> all the alphabet
+[a-zA-Z0-9]--> Alphnumeric
+[^a-zA-Z0-9] --> Except alphanumeric i,e special charachter
+
+Ex-2
+package RegularExpression;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Program_2_RegExDemo {
+	
+	public static void main(String[]args)
+	{
+		Pattern p = Pattern.compile("[a-zA-Z0-9]");
+		Matcher m = p.matcher("abCD96Ab");
+		while(m.find())
+		{
+			System.out.println(m.start()+"  "+m.group());
+		}
+	}
+
+}
+
+Pre-Defined Special Charachter
+==============================
+\\s ---> contains space charachter
+\\S ---> Except space
+\\d ---> all the digits
+\\D ---> except digit
+\\w ---> Alphanumeric
+\\W ---> special charachter
+. --> Any charachter
+
+Ex-3
+package RegularExpression;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Program_3_RegExPassword {
+	
+	public static void main(String[]args)
+	{
+		Pattern p = Pattern.compile("\\W");
+		Matcher m = p.matcher("abCD96$#Ab");
+		while(m.find())
+		{
+			System.out.println(m.start()+"  "+m.group());
+		}
+	}
+
+}
+
+Quantifiers
+===========
+No. of occurance of any charachter
+a --> a should be present in the target string
+a+ --> atleast one 'a' should be there
+a* --> atleast one 'a' along with zero a
+a? --> atmost one 'a' along with zero a
+
+Ex-4
+package RegularExpression;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Program_4_RegExQuantifiers {
+	
+	public static void main(String[]args)
+	{
+	Pattern p = Pattern.compile("a?");
+	Matcher m = p.matcher("abbaabba");
+	while(m.find())
+	{
+		System.out.println(m.start()+"  "+m.group());
+	}
+	}
+}
+
+Pattern Class split()
+=====================
+package RegularExpression;
+
+import java.util.regex.Pattern;
+
+public class Program_5_RegExPatterSplit {
+	
+	public static void main(String[]args)
+	{
+		Pattern p = Pattern.compile("a");
+		String[] s = p.split("TestYantra Software Solutions");
+		for(String s1:s)
+		{
+			System.out.println(s1);
+		}
+	}
+
+}
+
+String class split()
+====================
+package RegularExpression;
+
+public class Program_6_RegExStringSplit {
+	
+	public static void main(String[]args)
+	{
+		String s="TestYantra Software";
+		String[] s1 = s.split("a");
+		for(String s2:s1)
+		{
+			System.out.println(s2);
+		}
+	}
+
+}
+
+10 digit Mobile No.
+====================
+[6-9][0-9]{9}
+
+11 digit Mobile No.
+====================
+0?[6-9][0-9]{9}
+
+12 digit Mobile No.
+===================
+91?[6-9][0-9]{9}
+
+Ex
+package RegularExpression;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Program_7_RegExMobileNo {
+	
+	public static void main(String[]args)
+	{
+	Pattern p = Pattern.compile("91?[6-9][0-9]{9}");
+	Matcher m = p.matcher("918954778465");
+	if(m.find() && m.group().equals("918954778465"))
+	{
+		System.out.println("Mobile no. matching");
+	}
+	else
+	{
+		System.out.println("Not matching");
+	}
+	
+	}
+
+}
+
+

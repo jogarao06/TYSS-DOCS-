@@ -1,0 +1,117 @@
+Pre requist for RMG yantra Application
+1. MySql database
+	password should be root
+2. Create a database with a name projects
+ syntax: create database projects;
+
+Running RMG yantra application
+open cmd> java -jar <rmgyantra.jar> (--spring.datasource.password=)
+
+=======
+Port already used:- 
+ java -Dserver.port=8084 -jar <rmgyantra.jar> (--spring.datasource.password=password)
+
+username: rmgyantra
+password: rmgy@9999
+
+
+WebUrl:
+protocol://servername:portNumber/resourcepath?query=value
+http://localhost:8084/
+http://localhost:8084/swagger-ui.html#/project-controller
+
+HTTP methods:
+GET:- Used to retrieve the information from the service
+POST:- Used to create a new resource inside a service
+PUT:- Update the existing resource completely
+PATCH:- Update the existing resource partially
+DELETE:- Delete the resource inside service
+CRUD opertion
+C-creation R-Retrive U-Update D- delete
+
+=========================================
+Headers:-
+POST
+http://localhost:8084/addProject
+ContentType: JSON
+Body/Payload:
+{
+  "createdBy": "string",
+  "createdOn": "string",
+  "projectId": "string",
+  "projectName": "string",
+  "status": "string",
+  "teamSize": 0
+}
+
+==================================
+GET
+http://localhost:8084/projects
+===================================
+Difference between put and patch
+PUT: send complete payload/body doing updation
+PATCH: sending partial payload or body for updation
+
+Delete Project
+http://localhost:8084/projects/{project_id}
+
+
+Environment variable:-
+This variable is applicable for only one collection then we need to choose the environment
+
+How do u call environment variable in request
+syntax:
+{{variableName}} 
+Eg:{{url}}
+
+Global variable:-
+These variable can be accessed for any collection in workspace
+synatx:
+{{variableName}}
+
+
+===========================================
+Different ways to create post request
+1. Body->raw-> added body
+Type->Json
+2. sending a json file
+body-> binary-> select file
+===========================================
+validations:
+ To verify that the response is as per our excpection
+1.status code
+2. cookies 
+3. contentType
+4. response Time
+5. response body
+
+PostMan snippets:
+1. status code: status code is 200: - verifing status code
+2. Response header:  contenttype header check
+3. Response Time less than 200ms
+4. Response body json value check
+=================================================
+Parameterization/Data driven:-
+Reading the data from the external resource 
+Note:- PostMan support only csv and json 
+
+====================================================
+Running a collection in batch in Postman
+-> run collection -> click on Run Collection Name
+==============================================
+Running the collection in command line using newman
+Pre-requist: Node js should be installed
+To check node js installed in pc
+cmd> node
+install newman
+
+1. Export entire collection in json format
+	-> collection->export-> give extension as .json
+2. Export environment variable in json format
+	-> environment variable -> edit-> export-> extension .json
+3. In command promt
+newman run <collection.json> -e <environment.json>
+
+
+
+
